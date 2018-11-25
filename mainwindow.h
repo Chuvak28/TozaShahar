@@ -6,6 +6,9 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QStatusBar>
+#include "sqlquerymodel.h"
+#include <QTableView>
+#include <QSplitter>
 
 namespace Ui {
 class MainWindow;
@@ -19,6 +22,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void createGUI();
+    bool createConnection();
 
 private:
     Ui::MainWindow *ui;
@@ -26,6 +30,13 @@ private:
     QMenu *helpMenu;
     QAction *quitAction;
     QAction *helpAction;
+
+    QSqlDatabase db;
+    QTableView *viewTable;
+    QTabWidget *tabWidget;
+    SqlQueryModel *sqlModel;
+    QWidget *container;
+
 
 };
 
