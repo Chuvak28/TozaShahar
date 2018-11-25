@@ -1,3 +1,3 @@
 # TozaShahar
 
-Desktop application for government, the purpose of this application to make cities clean.
+Desktop application for the government, the purpose of this application to make cities clean.
