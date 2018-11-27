@@ -28,8 +28,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QQuickView *view = new QQuickView();
 
     container = QWidget::createWindowContainer(view,this);
-    //container->setMinimumSize(200,200);
-    //container->setMaximumSize(200,200);
+
 
     QQmlContext *ctxt = view->rootContext();
     ctxt->setContextProperty("sqlModel", sqlModel);
