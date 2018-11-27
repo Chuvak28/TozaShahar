@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     bool check = createConnection();
     if(check==true)
     {
-        sqlModel->setQuery("select Lat,Lon from dataMVD");
+        sqlModel->setQuery("select * from dataInfo");
         viewTable->setModel(sqlModel);
     }
 //    else
@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     spl->addWidget(viewTable);
 
     tabWidget->addTab(spl,"MAP");
+    //tabWidget->addTab()
     ui->gridLayout->addWidget(tabWidget);
 
     showMaximized();
@@ -77,7 +78,7 @@ bool MainWindow::createConnection()
 {
     db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName("localhost");
-    db.setDatabaseName("MVD");
+    db.setDatabaseName("toza_shahar");
     db.setUserName("root");
     db.setPassword("Jasur@295");
     if(!db.open())

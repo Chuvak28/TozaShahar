@@ -31,8 +31,8 @@ Map {
         delegate: MapCircle{
             id: circles
             center {
-                latitude: Lat;
-                longitude: Lon;
+                latitude: LATITUDE;
+                longitude: LONGTITUDE;
 
             }
             radius: 50.0
