@@ -16,9 +16,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     bool check = createConnection();
     if(check==true)
     {
-        sqlModel->setQuery("select * from dataInfo");
+        sqlModel->setQuery("select Origin_Time,TIP,"
+                           "Description,LATITUDE,LONGTITUDE from dataInfo");
         viewTable->setModel(sqlModel);
-        tableEvent->setModel(sqlModel);
+
     }
 //    else
 //    {
@@ -49,6 +50,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     tabWidget->addTab(widTableView,"Events");
     ui->gridLayout->addWidget(tabWidget);
 
+
+    connect(btnReadDataBase,&QPushButton::clicked,this,&MainWindow::getDataFromDB);
     showMaximized();
     setWindowTitle("Clean City");
 }
@@ -95,6 +98,13 @@ void MainWindow::createGUI()
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(quitAction);
     //helpMenu = menuBar()->addMenu(tr("&Help"));
+}
+
+void MainWindow::getDataFromDB()
+{
+
+    sqlModel->setQuery("select * from dataInfo");
+    tableEvent->setModel(sqlModel);
 }
 
 bool MainWindow::createConnection()

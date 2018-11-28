@@ -25,6 +25,8 @@ public:
     ~MainWindow();
     void createGUI();
     bool createConnection();
+public slots:
+    void getDataFromDB();
 
 private:
     Ui::MainWindow *ui;
