@@ -6,6 +6,7 @@
 #include <QtQuick>
 #include <QtQuickWidgets/QQuickWidget>
 #include <QSplitter>
+#include <QLabel>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         sqlModel->setQuery("select * from dataInfo");
         viewTable->setModel(sqlModel);
+        tableEvent->setModel(sqlModel);
     }
 //    else
 //    {
@@ -40,8 +42,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     spl->addWidget(container);
     spl->addWidget(viewTable);
 
+
+
+
     tabWidget->addTab(spl,"MAP");
-    //tabWidget->addTab()
+    tabWidget->addTab(widTableView,"Events");
     ui->gridLayout->addWidget(tabWidget);
 
     showMaximized();
@@ -55,6 +60,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::createGUI()
 {
+    widTableView = new QWidget;
+    meetingEdit = new QDateTimeEdit(QDateTime::currentDateTime());
+    meetingEdit1 = new QDateTimeEdit(QDateTime::currentDateTime());
+    tableEvent = new QTableView;
+    btnReadDataBase = new QPushButton("Read");
+    QHBoxLayout *hBox = new QHBoxLayout;
+    hBox->addStretch(1);
+    hBox->addWidget(new QLabel("From"));
+
+    hBox->addWidget(meetingEdit);
+    hBox->addWidget(new QLabel("To"));
+    hBox->addWidget(meetingEdit1);
+    hBox->addWidget(btnReadDataBase);
+    QVBoxLayout *vBox = new QVBoxLayout;
+    vBox->addWidget(tableEvent);
+    vBox->addLayout(hBox);
+    widTableView->setLayout(vBox);
+
+
     //QTABWIDGET
     tabWidget = new QTabWidget (this) ;
     //tabWidget->hide();

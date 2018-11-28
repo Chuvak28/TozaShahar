@@ -9,6 +9,8 @@
 #include "sqlquerymodel.h"
 #include <QTableView>
 #include <QSplitter>
+#include <QDateTimeEdit>
+#include <QPushButton>
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +38,11 @@ private:
     QTabWidget *tabWidget;
     SqlQueryModel *sqlModel;
     QWidget *container;
+    QWidget *widTableView;
+    QTableView *tableEvent;
+    QDateTimeEdit *meetingEdit;
+    QDateTimeEdit *meetingEdit1;
+    QPushButton *btnReadDataBase;
 
 
 };
