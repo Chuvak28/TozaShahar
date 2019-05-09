@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     {
         sqlModel->setQuery("select Origin_Time,TIP,"
                            "Description,LATITUDE,LONGTITUDE from dataInfo");
-        viewTable->setModel(sqlModel);
+        ui->dataMapView->setModel(sqlModel);
 
     }
 //    else
@@ -28,32 +28,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 
     //==========QML===============
-    QQuickView *view = new QQuickView();
+    //QQuickView *view = new QQuickView();
 
-    container = QWidget::createWindowContainer(view,this);
+    //container = QWidget::createWindowContainer(ui->quickWidget,this);
 
 
-    QQmlContext *ctxt = view->rootContext();
+    QQmlContext *ctxt = ui->quickWidget->rootContext();
     ctxt->setContextProperty("sqlModel", sqlModel);
-    view->setResizeMode(QQuickView::SizeRootObjectToView);
-    view->setSource(QUrl(QStringLiteral("qrc:/map.qml")));
+    //ui->quickWidget->setResizeMode(ui->quickWidget->SizeRootObjectToView);
+    //view->setResizeMode(QQuickView::SizeRootObjectToView);
+    //view->setSource(QUrl(QStringLiteral("qrc:/map.qml")));
     //==========QML===============
-    QSplitter *spl = new QSplitter(Qt::Vertical);
+    //QSplitter *spl = new QSplitter(Qt::Vertical);
 
-    spl->addWidget(container);
-    spl->addWidget(viewTable);
-
-
+    //spl->addWidget(ui->quickWidget);
+    //spl->addWidget(ui->dataMapView);
 
 
-    tabWidget->addTab(spl,"MAP");
-    tabWidget->addTab(widTableView,"Events");
-    ui->gridLayout->addWidget(tabWidget);
 
 
-    connect(btnReadDataBase,&QPushButton::clicked,this,&MainWindow::getDataFromDB);
+
+    //ui->tabWidget->addTab(widTableView,"Events");
+    //ui->gridLayout->addWidget(tabWidget);
+
+
+    //connect(btnReadDataBase,&QPushButton::clicked,this,&MainWindow::getDataFromDB);
     showMaximized();
-    setWindowTitle("Clean City");
+    setWindowTitle("Clean City1");
 }
 
 MainWindow::~MainWindow()
@@ -63,32 +64,32 @@ MainWindow::~MainWindow()
 
 void MainWindow::createGUI()
 {
-    widTableView = new QWidget;
-    meetingEdit = new QDateTimeEdit(QDateTime::currentDateTime());
-    meetingEdit1 = new QDateTimeEdit(QDateTime::currentDateTime());
-    tableEvent = new QTableView;
-    btnReadDataBase = new QPushButton("Read");
-    QHBoxLayout *hBox = new QHBoxLayout;
-    hBox->addStretch(1);
-    hBox->addWidget(new QLabel("From"));
+//    widTableView = new QWidget;
+//    meetingEdit = new QDateTimeEdit(QDateTime::currentDateTime());
+//    meetingEdit1 = new QDateTimeEdit(QDateTime::currentDateTime());
+//    tableEvent = new QTableView;
+//    btnReadDataBase = new QPushButton("Read");
+//    QHBoxLayout *hBox = new QHBoxLayout;
+//    hBox->addStretch(1);
+//    hBox->addWidget(new QLabel("From"));
 
-    hBox->addWidget(meetingEdit);
-    hBox->addWidget(new QLabel("To"));
-    hBox->addWidget(meetingEdit1);
-    hBox->addWidget(btnReadDataBase);
-    QVBoxLayout *vBox = new QVBoxLayout;
-    vBox->addWidget(tableEvent);
-    vBox->addLayout(hBox);
-    widTableView->setLayout(vBox);
+//    hBox->addWidget(meetingEdit);
+//    hBox->addWidget(new QLabel("To"));
+//    hBox->addWidget(meetingEdit1);
+//    hBox->addWidget(btnReadDataBase);
+//    QVBoxLayout *vBox = new QVBoxLayout;
+//    vBox->addWidget(tableEvent);
+//    vBox->addLayout(hBox);
+//    widTableView->setLayout(vBox);
 
 
     //QTABWIDGET
-    tabWidget = new QTabWidget (this) ;
+   // tabWidget = new QTabWidget (this) ;
     //tabWidget->hide();
     //QTABLEVIEW
-    viewTable = new QTableView;
-    viewTable->setMaximumHeight(250);
-    viewTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    //viewTable = new QTableView;
+    //viewTable->setMaximumHeight(250);
+    //viewTable->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
     //FILE MENU
